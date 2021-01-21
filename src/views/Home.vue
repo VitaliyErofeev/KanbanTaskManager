@@ -1,18 +1,51 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="task-page">
+    <div class="toolbar">
+      <button class="medium" @click="stageAddDialog = true">New Stage</button>
+      <button class="medium" @click="stageAddDialog = true">New Task</button>
+    </div>
+    <button class="button circle" title="Add Task" @click="newTask">
+      ++
+    </button>
+    <div class="column-container">
+      <column
+        v-for="(item, index) in columns"
+        :key="index"
+        :column="item"
+        :colId="index"
+      >
+      </column>
+    </div>
+    <template v-if="stageAddDialog">
+      <new-stage-dialog
+        @close="stageAddDialog = false"
+        @add="addStage($event)"
+      />
+    </template>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import column from "./../components/Column";
+import newStageDialog from "./dialog/NewColumnDialog";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'Home',
   components: {
-    HelloWorld
-  }
-}
+    newStageDialog,
+    column,
+  },
+  data: () => ({
+    stageAddDialog: false,
+  }),
+  computed: {
+    ...mapGetters({
+      columns: "task/getColumns",
+      tempCard: "task/getTempCard",
+    }),
+  },
+  methods: {
+    newTask() {},
+  },
+};
 </script>

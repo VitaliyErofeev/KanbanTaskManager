@@ -1,15 +1,30 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
+import createPersist from "vuex-localstorage";
 
-Vue.use(Vuex)
+import task from "./task";
+import team from "./team";
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+  plugins: [
+    createPersist({
+      namespace: "taskmanager",
+      initialState: {},
+      // ONE_WEEK
+      expires: 7 * 24 * 60 * 60 * 1e3,
+      paths: ["task", "team"],
+    }),
+  ],
   modules: {
-  }
-})
+    task,
+    team,
+  },
+});
+
+export default store;
