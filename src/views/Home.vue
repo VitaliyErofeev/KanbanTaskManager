@@ -4,9 +4,6 @@
       <button class="medium" @click="stageAddDialog = true">New Stage</button>
       <button class="medium" @click="stageAddDialog = true">New Task</button>
     </div>
-    <button class="button circle" title="Add Task" @click="newTask">
-      ++
-    </button>
     <div class="column-container">
       <column
         v-for="(item, index) in columns"

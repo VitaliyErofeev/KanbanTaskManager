@@ -42,7 +42,7 @@ button.icon {
 }
 
 button.circle {
-  position: absolute;
+  //position: absolute;
   right: 24px;
   bottom: 24px;
   font-size: 26px;
@@ -50,4 +50,20 @@ button.circle {
   width: 50px;
   height: 50px;
   padding: 0;
+  &.small {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+  &.red {
+    color: black;
+    background-color: white;
+    border-color: red;
+    border-width: 2px;
+    border: red 1px solid;
+    &:hover {
+      background-color: red;
+      color: white;
+    }
+  }
 }
